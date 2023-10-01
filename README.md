@@ -66,4 +66,15 @@ and are not final thus could be improved in the next version. The complete resul
 
 ## Citation
 
-The paper will soon be released on arxiv.
+
+This is a draft version of the paper [Forgedit: Text Guided Image Editing via Learning and Forgetting](https://arxiv.org/abs/2309.10556v1):
+```
+@misc{zhang2023forgedit,
+      title={Forgedit: Text Guided Image Editing via Learning and Forgetting}, 
+      author={Shiwen Zhang and Shuai Xiao and Weilin Huang},
+      year={2023},
+      eprint={2309.10556},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+```
