@@ -69,12 +69,10 @@ and are not final thus could be improved in the next version. The complete resul
 
 This is a draft version of the paper [Forgedit: Text Guided Image Editing via Learning and Forgetting](https://arxiv.org/abs/2309.10556v1):
 ```
-@misc{zhang2023forgedit,
-      title={Forgedit: Text Guided Image Editing via Learning and Forgetting}, 
-      author={Shiwen Zhang and Shuai Xiao and Weilin Huang},
-      year={2023},
-      eprint={2309.10556},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@article{zhang2023forgedit,
+  title={Forgedit: Text Guided Image Editing via Learning and Forgetting},
+  author={Zhang, Shiwen and Xiao, Shuai and Huang, Weilin},
+  journal={arXiv preprint arXiv:2309.10556},
+  year={2023}
 }
 ```
