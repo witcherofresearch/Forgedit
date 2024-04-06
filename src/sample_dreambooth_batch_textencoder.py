@@ -49,10 +49,22 @@ def parse_args(input_args=None):
     
     return args
 args = parse_args()
-MOUNT_OSS_ROOT = '/data/oss_bucket_0/Diffusion'
+# Use a pipeline as a high-level helper
+#from transformers import pipeline
+
+#pipe = pipeline("image-to-text", model="Salesforce/blip-image-captioning-base")
+
+blipmodel='/mnt/bn/editdiffusion/Forgedit/models/blip-image-captioning-base'
+#"Salesforce/blip-image-captioning-base"
+#os.path.join(MOUNT_OSS_ROOT,'blip-image-captioning-base')
+
+processor = BlipProcessor.from_pretrained(blipmodel)
+model = BlipForConditionalGeneration.from_pretrained(blipmodel).to("cuda")
+MOUNT_OSS_ROOT = '.'
 MOUNT_OSS_ROOT_EXP = os.path.join(MOUNT_OSS_ROOT, 'Experiments')
 model_path='stable-diffusion-v1-4/'
 diffusion_dir=os.path.join(MOUNT_OSS_ROOT,model_path)
+
 textlr=5e-6
 
 unetlr=5e-6
@@ -80,10 +92,7 @@ if args.edit=='True':
     unet_orig = UNet2DConditionModel.from_pretrained(os.path.join(diffusion_dir, 'unet'),
                                                 in_channels=4,
                                                 low_cpu_mem_usage=False).to(device)
-blipmodel=os.path.join(MOUNT_OSS_ROOT,'blip-image-captioning-base')
 
-processor = BlipProcessor.from_pretrained(blipmodel)
-model = BlipForConditionalGeneration.from_pretrained(blipmodel).to("cuda")
 
 
 

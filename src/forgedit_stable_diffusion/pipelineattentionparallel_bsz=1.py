@@ -312,6 +312,7 @@ class ForgeditStableDiffusionPipeline(DiffusionPipeline):
     def __call__(
         self,
         unet_orig=None,
+        prompt='',
         alpha: float = 1.2,
         height: Optional[int] = 512,
         width: Optional[int] = 512,
@@ -372,13 +373,20 @@ class ForgeditStableDiffusionPipeline(DiffusionPipeline):
             raise ValueError(f"`height` and `width` have to be divisible by 8 but are {height} and {width}.")
         if self.text_embeddings is None:
             raise ValueError("Please run the pipe.train() before trying to generate an image.")
-        if self.text_embeddings_orig is None:
-            raise ValueError("Please run the pipe.train() before trying to generate an image.")
         
         
         text_embeddings=self.text_embeddings
+        prompt_input = self.tokenizer(
+            prompt,
+            padding="max_length",
+            max_length=self.tokenizer.model_max_length,
+            truncation=True,
+            return_tensors="pt",
+        )
+        prompt_embeddings = self.text_encoder(prompt_input.input_ids.to(self.device))[0]
         
-        prompt_embeddings=self.text_embeddings_orig
+        #prompt_embeddings=self.text_embeddings_orig
+        
         if interpolation=='vp':
             normalizetext=torch.nn.functional.normalize(text_embeddings,dim=2)
             b,n,c=normalizetext.shape
@@ -394,7 +402,7 @@ class ForgeditStableDiffusionPipeline(DiffusionPipeline):
             
             text_embeddings =alpha*projedit+textalpha*text_embeddings
         elif interpolation=='vs':
-            text_embeddings = alpha * self.text_embeddings_orig + (1 - alpha) * text_embeddings
+            text_embeddings = alpha * prompt_embeddings + (1 - alpha) * text_embeddings
         
 
         # here `guidance_scale` is defined analog to the guidance weight `w` of equation (2)
