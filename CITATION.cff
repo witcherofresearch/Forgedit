@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Zhang"
+  given-names: "Shiwen"
+title: "Pytorch implementation of Forgedit"
+version: 1.0.0
+date-released: 2024-07-01
+url: "https://github.com/witcherofresearch/Forgedit"
