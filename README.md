@@ -47,7 +47,7 @@ One needs to change the img_url and prompt in the src/sample_forgedit_batch_text
 
 There are 7 typical forgetting strategies implemented in src/forgedit_stable_diffusion/pipelineattentionparallel_bsz=1.py, which can be set with --forget argument. Please note the default value is --forget='donotforget' without using forgetting strategies.
 
-
+[More reproducing examples with complete hyperparameters on EditEval v1 could be found in this instruction](https://github.com/SiatMMLab/Awesome-Diffusion-Model-Based-Image-Editing-Methods/issues/12)
 
 ### DreamBoothForgedit
 
